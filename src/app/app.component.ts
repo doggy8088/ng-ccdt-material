@@ -1,14 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, LOCALE_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {provideNativeDateAdapter, DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { JsonPipe } from '@angular/common';
+import { JsonPipe, registerLocaleData } from '@angular/common';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateAdapterOptions, MomentDateAdapter } from '@angular/material-moment-adapter';
 import moment, { Moment } from 'moment';
 import twMoment from 'moment-taiwan';
+
+import localeZhHant from '@angular/common/locales/zh-Hant';
+import localZhHantExtra from '@angular/common/locales/extra/zh-Hant';
+console.log(localeZhHant, localZhHantExtra);
+registerLocaleData(localeZhHant, localZhHantExtra);
 
 export class TaiwanDateAdapter extends MomentDateAdapter {
 
@@ -35,6 +40,10 @@ export class TaiwanDateAdapter extends MomentDateAdapter {
   selector: 'app-root',
   standalone: true,
   providers: [provideNativeDateAdapter(),
+    {
+      provide: LOCALE_ID,
+      useValue: 'zh-Hant'
+    },
   {
     provide: MAT_DATE_LOCALE,
     useValue: 'zh-TW'
@@ -52,7 +61,7 @@ export class TaiwanDateAdapter extends MomentDateAdapter {
       },
       display: {
         dateInput: 'tYY/MM/DD',
-        monthYearLabel: 'tYY MMM',
+        monthYearLabel: '民國tYY年MM月',
         dateA11yLabel: 'LL',
         monthYearA11yLabel: 'tYY MMMM',
       },
