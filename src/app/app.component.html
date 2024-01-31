@@ -2,6 +2,10 @@
   {{ 'Hello World' | translate }}
 </h1>
 
+<button mat-raised-button (click)="changeLang('en')">切換成英文</button>
+<button mat-raised-button (click)="changeLang('zh-tw')">切換成中文</button>
+
+<hr>
 
 <mat-form-field>
   <mat-label>Enter a date range</mat-label>

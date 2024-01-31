@@ -1,4 +1,4 @@
-import { Component, LOCALE_ID } from '@angular/core';
+import { Component, LOCALE_ID, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -6,36 +6,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {provideNativeDateAdapter, DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JsonPipe, registerLocaleData } from '@angular/common';
-import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateAdapterOptions, MomentDateAdapter } from '@angular/material-moment-adapter';
-import moment, { Moment } from 'moment';
-import twMoment from 'moment-taiwan';
+import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 
 import localeZhHant from '@angular/common/locales/zh-Hant';
 import localZhHantExtra from '@angular/common/locales/extra/zh-Hant';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TaiwanDateAdapter } from './TaiwanDateAdapter';
 console.log(localeZhHant, localZhHantExtra);
 registerLocaleData(localeZhHant, localZhHantExtra);
-
-export class TaiwanDateAdapter extends MomentDateAdapter {
-
-  constructor(locale: string, options: MatMomentDateAdapterOptions) {
-    super(locale, options);
-    moment.locale(locale);
-  }
-
-  override parse(value: any, parseFormat: string): Moment | null {
-    return moment(moment(value).format(parseFormat));
-  }
-
-  override format(date: Moment, displayFormat: string): string {
-    return twMoment(date).format(displayFormat);
-  }
-
-  override getYearName(date: Moment): string {
-    const twYear = twMoment(date).twYear();
-    return (twYear > 0) ? `${twYear}` : '';
-  }
-}
 
 @Component({
   selector: 'app-root',
@@ -75,9 +53,18 @@ export class TaiwanDateAdapter extends MomentDateAdapter {
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+
+  translate = inject(TranslateService);
+
   title = 'ng-ccdt-material'
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
+
+
+  changeLang(lang: string) {
+    this.translate.use(lang);
+  }
+
 }
