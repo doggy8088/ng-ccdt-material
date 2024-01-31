@@ -44,6 +44,8 @@ import { TaiwanDateAdapter } from './TaiwanDateAdapter';
 })
 export class AppComponent {
 
+  minutes = 1;
+
   translate = inject(TranslateService);
 
   title = 'ng-ccdt-material'
