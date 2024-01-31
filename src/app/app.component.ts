@@ -12,6 +12,7 @@ import twMoment from 'moment-taiwan';
 
 import localeZhHant from '@angular/common/locales/zh-Hant';
 import localZhHantExtra from '@angular/common/locales/extra/zh-Hant';
+import { TranslateModule } from '@ngx-translate/core';
 console.log(localeZhHant, localZhHantExtra);
 registerLocaleData(localeZhHant, localZhHantExtra);
 
@@ -67,11 +68,14 @@ export class TaiwanDateAdapter extends MomentDateAdapter {
       },
     }
   }],
-  imports: [RouterOutlet, MatFormFieldModule, MatDatepickerModule, FormsModule, ReactiveFormsModule, JsonPipe],
+  imports: [RouterOutlet, MatFormFieldModule,
+    TranslateModule,
+    MatDatepickerModule, FormsModule, ReactiveFormsModule, JsonPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  title = 'ng-ccdt-material'
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
