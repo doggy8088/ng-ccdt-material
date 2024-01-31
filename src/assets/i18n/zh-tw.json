@@ -1,3 +1,8 @@
 {
-  "Hello World": "哈囉世界"
+  "SiteInfo": {
+    "Title": "網站標題"
+  },
+  "MSG": {
+    "Hello World": "哈囉, {{name}}！"
+  }
 }

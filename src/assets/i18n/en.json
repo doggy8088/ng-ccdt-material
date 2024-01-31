@@ -1,3 +1,8 @@
 {
-  "Hello World": "Hello World"
+  "SiteInfo": {
+    "Title": "Site Title"
+  },
+  "MSG": {
+    "Hello World": "Hello {{name}}!"
+  }
 }

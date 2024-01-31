@@ -1,5 +1,7 @@
+<h1>{{ title }}</h1>
+
 <h1>
-  {{ 'Hello World' | translate }}
+  {{ 'MSG.Hello World' | translate:{ name: 'Will' } }}
 </h1>
 
 <button mat-raised-button (click)="changeLang('en')">切換成英文</button>
