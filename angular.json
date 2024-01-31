@@ -60,6 +60,14 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "zh-Hant": {
+              "localize": ["zh-Hant"],
+              "baseHref": "/zh-Hant/"
+            },
+            "en": {
+              "localize": ["en"],
+              "baseHref": "/en/"
             }
           },
           "defaultConfiguration": "production"
@@ -72,6 +80,12 @@
             },
             "development": {
               "buildTarget": "ng-ccdt-material:build:development"
+            },
+            "zh-Hant": {
+              "buildTarget": "ng-ccdt-material:build:development,zh-Hant"
+            },
+            "en": {
+              "buildTarget": "ng-ccdt-material:build:development,en"
             }
           },
           "defaultConfiguration": "development"
